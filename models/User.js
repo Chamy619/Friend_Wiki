@@ -31,5 +31,24 @@ const userSchema = mongoose.Schema({
     tokenExp: Number
 });
 
+userSchema.pre('save', function (next) {
+    const userInfo = this;
+    // 비밀번호 암호화
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+        if (err) {
+            next(err);
+        }
+
+        bcrypt.hash(this.password, salt, (err, hash) => {
+            if (err) {
+                next(err);
+            }
+
+            userInfo.password = hash;
+            next();
+        });
+    });
+});
+
 const User = mongoose.model('User', userSchema);
-module.exports = {User};
+module.exports = { User };
