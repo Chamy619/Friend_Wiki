@@ -27,7 +27,7 @@ mongoose.connect(config.mongoURI, {
  */
 app.post('/api/user/login', (req, res) => {
   User.findOne({ email: req.body.email }, (err, userInfo) => {
-    if (err) {
+    if (!userInfo) {
       res.json({ success: false, message: '이메일에 해당하는 유저가 없습니다.' });
       return;
     }
@@ -51,24 +51,25 @@ app.post('/api/user/login', (req, res) => {
 
         res.json({ success: true, token });
       });
-    })
-    const { User } = require('./models/User.js');
-
-    // 회원가입
-    app.post('/api/user/register', (req, res) => {
-      const user = new User(req.body);
-      user.save((err) => {
-        if (err) {
-          res.json({ success: false, err });
-          return;
-        }
-
-        res.status(200).json({ success: true });
-      });
     });
+  });
+});
 
-    app.use('/', (req, res) => {
-      res.send('hello world');
-    });
+// 회원가입
+app.post('/api/user/register', (req, res) => {
+  const user = new User(req.body);
+  user.save((err) => {
+    if (err) {
+      res.json({ success: false, err });
+      return;
+    }
 
-    app.listen(port, () => { console.log(`Listening on port ${port}`) });
+    res.status(200).json({ success: true });
+  });
+});
+
+app.use('/', (req, res) => {
+  res.send('hello world');
+});
+
+app.listen(port, () => { console.log(`Listening on port ${port}`) });
