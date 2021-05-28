@@ -52,11 +52,23 @@ app.post('/api/user/login', (req, res) => {
         res.json({ success: true, token });
       });
     })
-  });
-});
+    const { User } = require('./models/User.js');
 
-app.use('/', (req, res) => {
-  res.send('hello world');
-});
+    // 회원가입
+    app.post('/api/user/register', (req, res) => {
+      const user = new User(req.body);
+      user.save((err) => {
+        if (err) {
+          res.json({ success: false, err });
+          return;
+        }
 
-app.listen(port, () => { console.log(`Listening on port ${port}`) });
+        res.status(200).json({ success: true });
+      });
+    });
+
+    app.use('/', (req, res) => {
+      res.send('hello world');
+    });
+
+    app.listen(port, () => { console.log(`Listening on port ${port}`) });
