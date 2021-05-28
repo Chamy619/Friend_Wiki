@@ -31,21 +31,31 @@ const userSchema = mongoose.Schema({
     tokenExp: Number
 });
 
+/**
+ * mongoDB에 저장하기 전에 실행
+ * 저장 내용에 password가 포함되어 있으면 암호화 작업 수행
+ */
 userSchema.pre('save', function (next) {
     const userInfo = this;
+
+    // 비밀번호를 변경하지 않을 경우 암호화를 진행하지 않음 
+    if (!userInfo.isModified('password')) {
+        return next();
+    }
+
     // 비밀번호 암호화
     bcrypt.genSalt(saltRounds, (err, salt) => {
         if (err) {
-            next(err);
+            return next(err);
         }
 
         bcrypt.hash(this.password, salt, (err, hash) => {
             if (err) {
-                next(err);
+                return next(err);
             }
 
             userInfo.password = hash;
-            next();
+            return next();
         });
     });
 });

@@ -98,3 +98,11 @@ userSchema.pre('save', (next) => {
 ## 구조
 
 `사용자 요청 -> 암호화 -> DB 저장 -> 응답` 의 순서로 회원가입이 진행된다.
+
+## 변경시 참고사항
+
+만약 회원가입 부분을 수정하려면 해당 파일을 참고하면 된다.
+ * `index.js`
+    * `app.post('/api/user/register')`
+ * `models/User.js`
+    * `userSchema.pre('save')`
