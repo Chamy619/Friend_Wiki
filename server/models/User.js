@@ -84,5 +84,28 @@ userSchema.pre('save', function (next) {
     });
 });
 
+/**
+ * 토큰으로 유저의 _id를 전달
+ * @req = token string
+ * @callback = function(err, User._id)
+ */
+userSchema.statics.findByToken = function (token, callback) {
+    const mongooseUser = this;
+    if (!token) {
+        return callback({ message: '토큰 없음' });
+    }
+
+    mongooseUser.findOne({ token: token }, (err, userInfo) => {
+        if (err) {
+            return callback(err);
+        }
+        if (!userInfo) {
+            return callback({ message: '토큰을 가진 유저 없음' });
+        }
+
+        return callback(null, userInfo._id);
+    });
+}
+
 const User = mongoose.model('User', userSchema);
 module.exports = { User };

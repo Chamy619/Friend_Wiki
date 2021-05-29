@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const auth = require('./middleware/auth.js');
+
 // MongoDB 연동
 const mongoose = require('mongoose');
 const config = require('./config/key.js');
@@ -55,6 +57,22 @@ app.post('/api/user/login', (req, res) => {
   });
 });
 
+/**
+ * 로그아웃
+ * @req = {token}
+ * @res = {success, |error| }
+ */
+app.get('/api/user/logout', auth, (req, res) => {
+  User.findOneAndUpdate({ _id: req._id }, { token: '' }, (err, result) => {
+    if (err) {
+      res.json({ success: false, err });
+      return;
+    }
+
+    res.json({ success: true });
+  })
+});
+
 // 회원가입
 app.post('/api/user/register', (req, res) => {
   const user = new User(req.body);
@@ -66,10 +84,6 @@ app.post('/api/user/register', (req, res) => {
 
     res.status(200).json({ success: true });
   });
-});
-
-app.use('/', (req, res) => {
-  res.send('hello world');
 });
 
 app.listen(port, () => { console.log(`Listening on port ${port}`) });
