@@ -18,6 +18,9 @@
 .env.test.local
 .env.production.local
 
+# server 주소
+/src/_actions/api_address.ts
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
