@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
     REGISTER_USER,
-    LOGIN_USER
+    LOGIN_USER,
+    LOGOUT_USER
 } from './types';
 import { server } from './api_address';
 
@@ -30,6 +31,26 @@ export const loginUser = async (dataToSubmit: LoginRequestInterface) => {
 
     return ({
         type: LOGIN_USER,
+        payload: response.data
+    });
+}
+
+export const logoutUser = async () => {
+    const originUserToken = localStorage.getItem('userToken');
+    let userToken = '';
+
+    if (typeof originUserToken === 'string') {
+        userToken = JSON.parse(originUserToken);
+    }
+
+    const response = await axios.get(`${server}/api/user/logout`, {
+        headers: {
+            authorization: userToken
+        }
+    });
+
+    return ({
+        type: LOGOUT_USER,
         payload: response.data
     });
 }

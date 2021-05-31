@@ -51,7 +51,7 @@ const Login: React.FC = (props: any) => {
         if (!response.payload.success) {
             alert(response.payload.message);
         } else {
-            localStorage.setItem('userToken', response.payload.token);
+            localStorage.setItem('userToken', JSON.stringify(response.payload.token));
             props.history.push('/');
         }
     }
