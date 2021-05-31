@@ -32,23 +32,23 @@ const Register: React.FC = (props: any) => {
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-    const onEmailHandler = (event: any) => {
+    const onEmailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
     };
 
-    const onNameHandler = (event: any) => {
+    const onNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
 
-    const onPasswordHandler = (event: any) => {
+    const onPasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
     };
 
-    const onConfirmPasswordHandler = (event: any) => {
+    const onConfirmPasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setConfirmPassword(event.target.value);
     }
 
-    const onSubmitHandler = async (event: any) => {
+    const onSubmitHandler = async (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (password !== confirmPassword) {

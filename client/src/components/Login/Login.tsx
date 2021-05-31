@@ -30,15 +30,15 @@ const Login: React.FC = (props: any) => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    const onEmailHandler = (event: any) => {
+    const onEmailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
     };
 
-    const onPasswordHandler = (event: any) => {
+    const onPasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
     }
 
-    const onSubmitHandler = async (event: any) => {
+    const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const body = {
