@@ -66,7 +66,7 @@ app.post('/api/user/login', (req, res) => {
  * @res = {success, |error| }
  */
 app.get('/api/user/logout', auth, (req, res) => {
-  User.findOneAndUpdate({ _id: req._id }, { token: '' }, (err, result) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: '' }, (err, result) => {
     if (err) {
       res.json({ success: false, err });
       return;
@@ -86,6 +86,20 @@ app.post('/api/user/register', (req, res) => {
     }
 
     res.status(200).json({ success: true });
+  });
+});
+
+// 로그인 여부 확인
+app.get('/api/user/auth', auth, (req, res) => {
+  res.json({
+    _id: req.user._id,
+    isAdmin: req.user.isAdmin,
+    isAuth: true,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    role: req.user.role,
+    image: req.user.imgae
   });
 });
 

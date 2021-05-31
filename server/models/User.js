@@ -85,9 +85,9 @@ userSchema.pre('save', function (next) {
 });
 
 /**
- * 토큰으로 유저의 _id를 전달
+ * 토큰으로 유저의 정보를 전달
  * @req = token string
- * @callback = function(err, User._id)
+ * @callback = function(err, User)
  */
 userSchema.statics.findByToken = function (token, callback) {
     const mongooseUser = this;
@@ -103,7 +103,7 @@ userSchema.statics.findByToken = function (token, callback) {
             return callback({ message: '토큰을 가진 유저 없음' });
         }
 
-        return callback(null, userInfo._id);
+        return callback(null, userInfo);
     });
 }
 

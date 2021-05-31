@@ -1,7 +1,8 @@
 import {
     REGISTER_USER,
     LOGIN_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    AUTH_USER
 } from '../_actions/types';
 const userState = (state: any = {}, action: any) => {
     switch (action.type) {
@@ -11,6 +12,8 @@ const userState = (state: any = {}, action: any) => {
             return { ...state, login: action.payload };
         case LOGOUT_USER:
             return { ...state, logout: action.payload };
+        case AUTH_USER:
+            return { ...state, auth: action.payload };
         default:
             return state;
     }
