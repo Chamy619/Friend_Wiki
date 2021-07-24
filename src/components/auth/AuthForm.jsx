@@ -23,6 +23,14 @@ const ButtonWrapper = styled.div`
   margin-top: 1rem;
 `;
 
+const ErrorBox = styled.div`
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: ${palette.red[7]};
+`;
+
 const Footer = styled.div`
   margin-top: 1rem;
   text-align: right;
@@ -38,12 +46,15 @@ const names = {
   register: '회원가입',
 };
 
-function AuthForm({ type, email, password, passwordConfirm, onChange, loading, onSubmit }) {
+function AuthForm({ type, email, password, passwordConfirm, username, onChange, loading, onSubmit, error }) {
   return (
     <AuthFormBlock>
       <h3>{names[type]}</h3>
       <form onSubmit={onSubmit}>
         <StyledInput type="email" name="email" placeholder="계정" value={email || ''} onChange={onChange} />
+        {type === 'register' && (
+          <StyledInput type="text" name="username" placeholder="이름" value={username || ''} onChange={onChange} />
+        )}
         <StyledInput
           type="password"
           name="password"
@@ -66,6 +77,7 @@ function AuthForm({ type, email, password, passwordConfirm, onChange, loading, o
           </Button>
         </ButtonWrapper>
       </form>
+      {error && <ErrorBox>{error}</ErrorBox>}
       <Footer>
         <Link to={`/${type === 'register' ? 'login' : 'register'}`}>
           {type === 'register' ? names['login'] : names['register']}
