@@ -1,10 +1,14 @@
+import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Header from '../../components/common/Header';
 
-function HeaderContainer() {
+function HeaderContainer({ history }) {
   const { user } = useSelector(({ user }) => ({ user: user.user }));
+  const goLogin = () => {
+    history.push('/login');
+  };
 
-  return <Header user={user} />;
+  return <Header user={user} goLogin={goLogin} />;
 }
 
-export default HeaderContainer;
+export default withRouter(HeaderContainer);

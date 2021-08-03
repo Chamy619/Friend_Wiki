@@ -32,7 +32,7 @@ const ButtonBlock = styled.div`
   margin-left: 1rem;
 `;
 
-function Header({ user }) {
+function Header({ user, goLogin }) {
   return (
     <>
       <HeaderBlock>
@@ -49,7 +49,11 @@ function Header({ user }) {
             </ButtonBlock>
           </div>
         )}
-        {!user && <Button type="confirm">로그인</Button>}
+        {!user && (
+          <Button type="confirm" onClick={goLogin}>
+            로그인
+          </Button>
+        )}
       </HeaderBlock>
       <Spacer />
     </>
