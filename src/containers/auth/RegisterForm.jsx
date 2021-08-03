@@ -14,7 +14,7 @@ function RegisterForm({ history }) {
     password: state.auth.register.password,
     passwordConfirm: state.auth.register.passwordConfirm,
     auth: state.auth.auth,
-    authError: state.auth.authError,
+    authError: state.auth.registerError,
     user: state.user.user,
   }));
 
