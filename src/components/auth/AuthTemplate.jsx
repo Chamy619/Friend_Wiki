@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import palette from '../../lib/style/palette';
 
@@ -33,7 +34,9 @@ function AuthTemplate({ children }) {
   return (
     <AuthTemplateBlock>
       <WhiteBox>
-        <div className="logo">느그위키</div>
+        <div className="logo">
+          <Link to="/">느그위키</Link>
+        </div>
         {children}
       </WhiteBox>
     </AuthTemplateBlock>
