@@ -1,5 +1,7 @@
+import HeaderContainer from '../containers/common/HeaderContainer';
+
 function HomePage() {
-  return <div>홈입니다.</div>;
+  return <HeaderContainer />;
 }
 
 export default HomePage;
