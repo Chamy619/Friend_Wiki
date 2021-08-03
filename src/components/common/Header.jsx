@@ -32,7 +32,7 @@ const ButtonBlock = styled.div`
   margin-left: 1rem;
 `;
 
-function Header({ user, goLogin }) {
+function Header({ user, goLogin, onLogout }) {
   return (
     <>
       <HeaderBlock>
@@ -45,7 +45,9 @@ function Header({ user, goLogin }) {
           <div className="user_info">
             {user.username}님 환영합니다.
             <ButtonBlock>
-              <Button type="warning">로그아웃</Button>
+              <Button type="warning" onClick={onLogout}>
+                로그아웃
+              </Button>
             </ButtonBlock>
           </div>
         )}
