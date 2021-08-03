@@ -47,30 +47,37 @@ const initialState = {
     passwordConfirm: '',
   },
   auth: null,
-  authError: null,
+  loginError: null,
+  registerError: null,
 };
 
 export default function auth(state = initialState, action) {
   switch (action.type) {
     case INITIAL_FORM:
-      return { ...state, [action.payload]: initialState[action.payload], auth: null, authError: null };
+      return {
+        ...state,
+        [action.payload]: initialState[action.payload],
+        auth: null,
+        loginError: null,
+        registerError: null,
+      };
     case CHANGE_FIELD:
       return {
         ...state,
         [action.payload.form]: { ...state[action.payload.form], [action.payload.name]: action.payload.value },
       };
     case LOGIN_SUCCESS:
-      return { ...state, login: { email: '', password: '' }, auth: action.payload, authError: null };
+      return { ...state, login: { email: '', password: '' }, auth: action.payload, loginError: null };
     case LOGIN_FAILURE:
-      return { ...state, auth: null, authError: action.payload };
+      return { ...state, auth: null, loginError: action.payload };
     case REGISTER_SUCCESS:
-      return { ...state, register: { ...initialState.register }, auth: action.payload, authError: null };
+      return { ...state, register: { ...initialState.register }, auth: action.payload, registerError: null };
     case REGISTER_FAILURE:
       return {
         ...state,
         register: { ...state.register, password: '', passwordConfirm: '' },
         auth: null,
-        authError: action.payload,
+        registerError: action.payload,
       };
     default: {
       return { ...state };

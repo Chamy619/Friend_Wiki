@@ -12,7 +12,7 @@ function LoginForm({ history }) {
     email: state.auth.login.email,
     password: state.auth.login.password,
     auth: state.auth.auth,
-    authError: state.auth.authError,
+    authError: state.auth.loginError,
     loading: state.loading['auth/LOGIN'],
     user: state.user.user,
   }));
