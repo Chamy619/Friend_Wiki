@@ -5,4 +5,6 @@ export const login = ({ email, password }) => client.post('/api/auth/login', { e
 export const register = ({ email, username, password }) =>
   client.post('/api/auth/register', { email, username, password });
 
+export const logout = () => client.get('/api/auth/login');
+
 export const check = () => client.get('/api/auth/check');
