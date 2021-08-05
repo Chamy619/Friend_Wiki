@@ -43,13 +43,14 @@ function LoginForm({ history }) {
   useEffect(() => {
     if (user) {
       history.push('/');
+      dispatch(initialForm('login'));
       try {
         localStorage.setItem('user', JSON.stringify(user));
       } catch (e) {
         console.log('localStorage is not working');
       }
     }
-  }, [history, user]);
+  }, [history, user, dispatch]);
 
   return (
     <AuthForm
