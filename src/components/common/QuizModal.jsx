@@ -26,17 +26,44 @@ const ModalBlock = styled.div`
   }
 `;
 
+const QuizBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  label {
+    cursor: pointer;
+  }
+  label + label {
+    margin-top: 0.25rem;
+  }
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-function Modal({ children, onConfirm, onCancel }) {
+function Modal({ visible, title, question, items, onChange, onConfirm, onCancel }) {
+  if (!visible) {
+    return null;
+  }
+
+  const boxClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
-    <Fullscreen>
+    <Fullscreen onClick={onCancel}>
       <ModalBlock>
-        <h2>회원가입 체크</h2>
-        {children}
+        <h2>{title}</h2>
+        <QuizBox onClick={boxClick}>
+          <p>{question}</p>
+          {items.map((item) => (
+            <label key={item.key}>
+              <input type="radio" value={item.key} name="ting" onChange={onChange} /> {item.text}
+            </label>
+          ))}
+        </QuizBox>
         <ButtonWrapper>
           <Button type="cancel" onClick={onCancel}>
             취소
