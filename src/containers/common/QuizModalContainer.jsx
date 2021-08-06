@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import QuizModal from '../../components/common/QuizModal';
+import RegisterError from '../../components/auth/RegisterError';
 
 const items = [
   {
@@ -36,6 +37,7 @@ const question = (
 
 function QuizModalContainer({ visible, onSuccess, closeModal }) {
   const [selected, setSelected] = useState('');
+  const [error, setError] = useState(false);
 
   const onChange = (event) => {
     setSelected(event.target.value);
@@ -46,12 +48,15 @@ function QuizModalContainer({ visible, onSuccess, closeModal }) {
       if (typeof onSuccess === 'function') {
         onSuccess();
       }
-      console.log('회원가입 성공!');
       return;
     }
 
-    console.log('팅구리냐?');
+    setError(true);
   };
+
+  if (error) {
+    return <RegisterError />;
+  }
 
   return (
     <QuizModal
