@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Menu from './Menu';
+import MenuContainer from '../../containers/common/MenuContainer';
 
 const TemplateBlock = styled.div`
   width: 100%;
@@ -11,7 +11,7 @@ const TemplateBlock = styled.div`
 function Template({ children }) {
   return (
     <TemplateBlock>
-      <Menu />
+      <MenuContainer />
       {children}
     </TemplateBlock>
   );

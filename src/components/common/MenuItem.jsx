@@ -41,7 +41,7 @@ const WriteButtonBlock = styled.div`
   }
 `;
 
-function MenuItem() {
+function MenuItem({ username, posts }) {
   const [postVisible, setPostVisible] = useState(false);
   const [addVisible, setAddVisible] = useState(false);
 
@@ -60,21 +60,19 @@ function MenuItem() {
   return (
     <MenuItemBlock>
       <div className="user" onClick={onClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-        양채훈
+        {username}
         {addVisible && (
           <WriteButtonBlock>
             <AiOutlinePlus />
           </WriteButtonBlock>
         )}
       </div>
-      {postVisible && (
-        <>
-          <div className="post">글1</div>
-          <div className="post">글2</div>
-          <div className="post">글3</div>
-          <div className="post">글4</div>
-        </>
-      )}
+      {postVisible &&
+        posts.map((post) => (
+          <div className="post" key={post.id}>
+            {post.title}
+          </div>
+        ))}
     </MenuItemBlock>
   );
 }

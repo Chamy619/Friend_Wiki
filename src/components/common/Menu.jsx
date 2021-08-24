@@ -27,7 +27,15 @@ const MenuButton = styled(AiOutlineMenu)`
   }
 `;
 
-function Menu() {
+const makeMenu = (userList) => {
+  const menu = [];
+  for (let username in userList) {
+    menu.push(<MenuItem username={username} posts={userList[username]} key={username} />);
+  }
+  return menu;
+};
+
+function Menu({ userList }) {
   const [menuVisible, setMenuVisible] = useState(false);
   const onClick = () => {
     setMenuVisible(!menuVisible);
@@ -42,8 +50,7 @@ function Menu() {
   return (
     <MenuBlock>
       <MenuButton onClick={onClick} />
-      <MenuItem />
-      <MenuItem />
+      {makeMenu(userList)}
     </MenuBlock>
   );
 }
