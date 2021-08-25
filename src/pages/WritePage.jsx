@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import EditorContainer from '../containers/write/EditorContainer';
-import WriteActionButtons from '../components/write/WriteActionButtons';
+import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer';
 
 const WritePageBlock = styled.div`
   padding-left: 3rem;
@@ -11,7 +11,7 @@ function WritePage() {
   return (
     <WritePageBlock>
       <EditorContainer />
-      <WriteActionButtons />
+      <WriteActionButtonsContainer />
     </WritePageBlock>
   );
 }
