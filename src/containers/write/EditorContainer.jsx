@@ -15,6 +15,7 @@ function EditorContainer({ match }) {
   const onChangeField = useCallback(
     (payload) => {
       dispatch(changeField(payload));
+      initialize('');
     },
     [dispatch],
   );

@@ -41,7 +41,7 @@ const WriteButtonBlock = styled.div`
   }
 `;
 
-function MenuItem({ username, posts }) {
+function MenuItem({ username, posts, goWrite }) {
   const [postVisible, setPostVisible] = useState(false);
   const [addVisible, setAddVisible] = useState(false);
 
@@ -62,7 +62,7 @@ function MenuItem({ username, posts }) {
       <div className="user" onClick={onClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
         {username}
         {addVisible && (
-          <WriteButtonBlock>
+          <WriteButtonBlock onClick={() => goWrite(username)}>
             <AiOutlinePlus />
           </WriteButtonBlock>
         )}

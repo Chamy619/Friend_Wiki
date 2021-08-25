@@ -29,7 +29,7 @@ const initialState = {
 export default function write(state = initialState, action) {
   switch (action.type) {
     case INITIALIZE:
-      return { ...state, owner: action.payload };
+      return { ...initialState, owner: action.payload };
     case CHANGE_FIELD:
       return { ...state, [action.payload.key]: action.payload.value };
     case WRITE_POST_SUCCESS:
