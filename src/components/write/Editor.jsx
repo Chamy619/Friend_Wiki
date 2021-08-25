@@ -30,7 +30,7 @@ const QuillWrapper = styled.div`
   }
 `;
 
-function Editor() {
+function Editor({ title, body, onChangeField }) {
   const quillElement = useRef(null);
   const quillInstance = useRef(null);
 
@@ -47,11 +47,22 @@ function Editor() {
         ],
       },
     });
-  }, []);
+
+    const quill = quillInstance.current;
+    quill.on('text-change', (delta, oldDelta, source) => {
+      if (source === 'user') {
+        onChangeField({ key: 'body', value: quill.root.innerHTML });
+      }
+    });
+  }, [onChangeField]);
+
+  const onChangeTitle = (event) => {
+    onChangeField({ key: 'title', value: event.target.value });
+  };
 
   return (
     <EditorBlock>
-      <TitleInput placeholder="제목을 입력하세요" />
+      <TitleInput placeholder="제목을 입력하세요" onChange={onChangeTitle} value={title} />
       <QuillWrapper>
         <div ref={quillElement} />
       </QuillWrapper>

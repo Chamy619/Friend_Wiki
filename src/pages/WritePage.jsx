@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Editor from '../components/write/Editor';
+import EditorContainer from '../containers/write/EditorContainer';
 import WriteActionButtons from '../components/write/WriteActionButtons';
 
 const WritePageBlock = styled.div`
@@ -10,7 +10,7 @@ const WritePageBlock = styled.div`
 function WritePage() {
   return (
     <WritePageBlock>
-      <Editor />
+      <EditorContainer />
       <WriteActionButtons />
     </WritePageBlock>
   );

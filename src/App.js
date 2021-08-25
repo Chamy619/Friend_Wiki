@@ -11,7 +11,7 @@ function App() {
       <Route exact path="/" component={HomePage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />
-      <Route exact path="/write" component={WritePage} />
+      <Route exact path="/write/:owner" component={WritePage} />
     </>
   );
 }
