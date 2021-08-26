@@ -16,9 +16,22 @@ const PostHead = styled.div`
   }
 `;
 
+const Owner = styled.div`
+  margin-top: 1rem;
+  span {
+    color: ${palette.gray[8]};
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+`;
+
 const SubInfo = styled.div`
   margin-top: 1rem;
   color: ${palette.gray[6]};
+
+  span {
+    font-style: italic;
+  }
 
   span + span:before {
     color: ${palette.gray[5]};
@@ -33,19 +46,38 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-function PostViewer() {
+function PostViewer({ post, error, loading }) {
+  if (loading) {
+    return (
+      <PostViewerBlock>
+        <h1>로딩중...</h1>
+      </PostViewerBlock>
+    );
+  }
+
+  if (!post || error) {
+    return (
+      <PostViewerBlock>
+        <h1>글을 골라주세요.</h1>
+      </PostViewerBlock>
+    );
+  }
+
   return (
     <PostViewerBlock>
       <PostHead>
-        <h1>제목</h1>
+        <h1>{post.title}</h1>
+        <Owner>
+          <span>{post.owner}</span>
+        </Owner>
         <SubInfo>
           <span>
-            <b>테스터</b>
+            <b>{post.user.username}</b>
           </span>
-          <span>{new Date().toLocaleDateString()}</span>
+          <span>{new Date(post.publishedDate).toLocaleString()} 작성</span>
         </SubInfo>
       </PostHead>
-      <PostContent dangerouslySetInnerHTML={{ __html: '<p>HTML <b>내용</b>입니다.</p>' }} />
+      <PostContent dangerouslySetInnerHTML={{ __html: post.body }} />
     </PostViewerBlock>
   );
 }

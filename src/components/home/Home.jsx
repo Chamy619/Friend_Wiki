@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PostViewer from '../post/PostViewer';
+import PostViewerContainer from '../../containers/post/PostViewerContainer';
 
 const HomeBlock = styled.div`
   width: 100%;
@@ -9,7 +9,7 @@ const HomeBlock = styled.div`
 function Home() {
   return (
     <HomeBlock>
-      <PostViewer />
+      <PostViewerContainer />
     </HomeBlock>
   );
 }
