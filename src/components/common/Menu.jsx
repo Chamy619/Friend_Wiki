@@ -43,6 +43,7 @@ function Menu({ user, userList, goWrite, showPost }) {
   if (!user) {
     return null;
   }
+
   const onClick = () => {
     setMenuVisible(!menuVisible);
   };

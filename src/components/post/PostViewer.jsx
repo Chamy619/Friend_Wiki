@@ -46,7 +46,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-function PostViewer({ post, error, loading }) {
+function PostViewer({ post, error, loading, actionButtons }) {
   if (loading) {
     return (
       <PostViewerBlock>
@@ -77,6 +77,7 @@ function PostViewer({ post, error, loading }) {
           <span>{new Date(post.publishedDate).toLocaleString()} 작성</span>
         </SubInfo>
       </PostHead>
+      {actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: post.body }} />
     </PostViewerBlock>
   );
