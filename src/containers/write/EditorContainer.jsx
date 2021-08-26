@@ -20,7 +20,7 @@ function EditorContainer({ match }) {
   );
 
   useEffect(() => {
-    dispatch(initialize(owner));
+    return () => dispatch(initialize(owner));
   }, [dispatch, owner]);
 
   return <Editor title={title} body={body} onChangeField={onChangeField} />;
