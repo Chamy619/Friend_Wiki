@@ -41,7 +41,7 @@ const WriteButtonBlock = styled.div`
   }
 `;
 
-function MenuItem({ username, posts, goWrite }) {
+function MenuItem({ username, posts, goWrite, showPost }) {
   const [postVisible, setPostVisible] = useState(false);
   const [addVisible, setAddVisible] = useState(false);
 
@@ -69,7 +69,13 @@ function MenuItem({ username, posts, goWrite }) {
       </div>
       {postVisible &&
         posts.map((post) => (
-          <div className="post" key={post.id}>
+          <div
+            className="post"
+            key={post.id}
+            onClick={() => {
+              showPost(post.id);
+            }}
+          >
             {post.title}
           </div>
         ))}

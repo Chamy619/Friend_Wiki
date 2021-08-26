@@ -27,16 +27,22 @@ const MenuButton = styled(AiOutlineMenu)`
   }
 `;
 
-const makeMenu = (userList, goWrite) => {
+const makeMenu = (userList, goWrite, showPost) => {
   const menu = [];
   for (let username in userList) {
-    menu.push(<MenuItem username={username} posts={userList[username]} key={username} goWrite={goWrite} />);
+    menu.push(
+      <MenuItem username={username} posts={userList[username]} key={username} goWrite={goWrite} showPost={showPost} />,
+    );
   }
   return menu;
 };
 
-function Menu({ userList, goWrite }) {
+function Menu({ user, userList, goWrite, showPost }) {
   const [menuVisible, setMenuVisible] = useState(false);
+
+  if (!user) {
+    return null;
+  }
   const onClick = () => {
     setMenuVisible(!menuVisible);
   };
@@ -50,7 +56,7 @@ function Menu({ userList, goWrite }) {
   return (
     <MenuBlock>
       <MenuButton onClick={onClick} />
-      {makeMenu(userList, goWrite)}
+      {makeMenu(userList, goWrite, showPost)}
     </MenuBlock>
   );
 }
