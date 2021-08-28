@@ -5,6 +5,7 @@ import { unloadPost } from '../../modules/post';
 import { setOriginalPost } from '../../modules/write';
 import PostViewer from '../../components/post/PostViewer';
 import PostActionButtons from '../../components/post/PostActionButtons';
+import { removePost } from '../../lib/api/posts';
 
 function PostViewerContainer({ history }) {
   const dispatch = useDispatch();
@@ -20,6 +21,15 @@ function PostViewerContainer({ history }) {
     history.push(`/write/${post.owner}`);
   };
 
+  const onRemove = async () => {
+    try {
+      await removePost(post._id);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const ownPost = (user && user.username) === (post && post.owner);
 
   useEffect(() => {
@@ -33,7 +43,7 @@ function PostViewerContainer({ history }) {
       post={post}
       error={error}
       loading={loading}
-      actionButtons={!ownPost && <PostActionButtons onEdit={onEdit} />}
+      actionButtons={!ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
     />
   );
 }
