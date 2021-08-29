@@ -5,7 +5,6 @@ const TemplateBlock = styled.div`
   width: 100%;
   height: calc(100vh - 3rem);
   display: flex;
-  flex-direction: row;
 `;
 
 function Template({ children }) {

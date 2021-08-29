@@ -7,6 +7,7 @@ const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
   height: 3rem;
+  background: white;
   display: flex;
   justify-content: space-between;
   align-items: center;

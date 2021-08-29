@@ -6,11 +6,20 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import MenuItem from './MenuItem';
 
 const MenuBlock = styled.div`
-  width: 200px;
+  width: 160px;
   height: 100%;
   background: ${palette.blue[0]};
   display: flex;
   flex-direction: column;
+  position: fixed;
+  z-index: 10;
+`;
+
+const Spacer = styled.div`
+  width: 160px;
+  height: 100%;
+  position: relative;
+  display: block;
 `;
 
 const HiddenMenuBlock = styled.div`
@@ -55,10 +64,13 @@ function Menu({ user, userList, goWrite, showPost }) {
     );
   }
   return (
-    <MenuBlock>
-      <MenuButton onClick={onClick} />
-      {makeMenu(userList, goWrite, showPost)}
-    </MenuBlock>
+    <>
+      <MenuBlock>
+        <MenuButton onClick={onClick} />
+        {makeMenu(userList, goWrite, showPost)}
+      </MenuBlock>
+      <Spacer />
+    </>
   );
 }
 
