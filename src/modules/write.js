@@ -3,6 +3,7 @@ import createRequestSaga, { createRequestActionTypes } from '../lib/createReques
 import * as postsAPI from '../lib/api/posts';
 
 const INITIALIZE = 'write/INITIALIZE';
+const CLEAR = 'write/CLEAR';
 const CHANGE_FIELD = 'write/CHANGE_FIELD';
 const SET_ORIGINAL_POST = 'write/SET_ORIGINAL_POST';
 
@@ -10,6 +11,7 @@ const [WRITE_POST, WRITE_POST_SUCCESS, WRITE_POST_FAILURE] = createRequestAction
 const [UPDATE_POST, UPDATE_POST_SUCCESS, UPDATE_POST_FAILURE] = createRequestActionTypes('write/UPDATE_POST');
 
 export const initialize = (owner) => ({ type: INITIALIZE, payload: owner });
+export const clear = () => ({ type: CLEAR });
 export const changeField = ({ key, value }) => ({ type: CHANGE_FIELD, payload: { key, value } });
 export const setOriginalPost = (post) => ({ type: SET_ORIGINAL_POST, payload: post });
 
@@ -36,7 +38,9 @@ const initialState = {
 export default function write(state = initialState, action) {
   switch (action.type) {
     case INITIALIZE:
-      return { ...initialState, owner: action.payload };
+      return { ...state, owner: action.payload };
+    case CLEAR:
+      return { ...initialState };
     case CHANGE_FIELD:
       return { ...state, [action.payload.key]: action.payload.value };
     case SET_ORIGINAL_POST:

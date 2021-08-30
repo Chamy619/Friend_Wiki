@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { initialize, changeField } from '../../modules/write';
+import { initialize, changeField, clear } from '../../modules/write';
 import Editor from '../../components/write/Editor';
 
 function EditorContainer({ match }) {
@@ -20,7 +20,8 @@ function EditorContainer({ match }) {
   );
 
   useEffect(() => {
-    return () => dispatch(initialize(owner));
+    dispatch(initialize(owner));
+    return () => dispatch(clear());
   }, [dispatch, owner]);
 
   return <Editor title={title} body={body} onChangeField={onChangeField} />;
