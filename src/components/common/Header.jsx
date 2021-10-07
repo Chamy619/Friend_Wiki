@@ -26,6 +26,7 @@ const HeaderBlock = styled.div`
   .menu {
     display: flex;
     padding-left: 0;
+    margin: 0;
     li {
       padding: 8px 12px;
       cursor: pointer;
