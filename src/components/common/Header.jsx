@@ -45,7 +45,7 @@ const HeaderBlock = styled.div`
   .toggle {
     position: absolute;
     right: 8px;
-    top: 0.5rem;
+    top: 0.7rem;
     font-size: 1.5rem;
     display: none;
     cursor: pointer;
@@ -148,18 +148,20 @@ function Header({ user, goLogin, onLogout }) {
         <div className="toggle" onClick={onToggle}>
           <FaBars />
         </div>
-        <ul className="toggle_menu">
-          <li>위키</li>
-          <li>미키</li>
-        </ul>
-        {!user && (
+        {toggled && (
+          <ul className="toggle_menu">
+            <li>위키</li>
+            <li>미키</li>
+          </ul>
+        )}
+        {!user && toggled && (
           <div className="toggle_user_info">
             <Button type="confirm" onClick={goLogin}>
               로그인
             </Button>
           </div>
         )}
-        {user && (
+        {user && toggled && (
           <div className="toggle_user_info">
             <Button type="warning" onClick={onLogout}>
               로그아웃
