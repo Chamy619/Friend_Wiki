@@ -7,6 +7,11 @@ function HeaderContainer({ history }) {
   const dispatch = useDispatch();
   const { user } = useSelector(({ user }) => ({ user: user.user }));
 
+  const menu = [
+    { text: '위키', path: 'wiki' },
+    { text: '테스트', path: 'test' },
+  ];
+
   const goLogin = () => {
     history.push('/login');
   };
@@ -15,7 +20,11 @@ function HeaderContainer({ history }) {
     dispatch(logout());
   };
 
-  return <Header user={user} goLogin={goLogin} onLogout={onLogout} />;
+  const goMenu = (path) => {
+    history.push(`/${path}`);
+  };
+
+  return <Header user={user} goLogin={goLogin} onLogout={onLogout} menu={menu} goMenu={goMenu} />;
 }
 
 export default withRouter(HeaderContainer);

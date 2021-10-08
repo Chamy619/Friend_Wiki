@@ -110,7 +110,7 @@ const ButtonBlock = styled.div`
   margin-left: 1rem;
 `;
 
-function Header({ user, goLogin, onLogout }) {
+function Header({ user, goLogin, onLogout, menu, goMenu }) {
   const [toggled, setToggled] = useState(false);
 
   const onToggle = () => {
@@ -126,8 +126,16 @@ function Header({ user, goLogin, onLogout }) {
           </h3>
         </div>
         <ul className="menu">
-          <li>위키</li>
-          <li>미키</li>
+          {menu.map((element) => (
+            <li
+              key={element.path}
+              onClick={() => {
+                goMenu(element.path);
+              }}
+            >
+              {element.text}
+            </li>
+          ))}
         </ul>
         {user && (
           <div className="user_info">
@@ -151,8 +159,16 @@ function Header({ user, goLogin, onLogout }) {
         </div>
         {toggled && (
           <ul className="toggle_menu">
-            <li>위키</li>
-            <li>미키</li>
+            {menu.map((element) => (
+              <li
+                key={element.path}
+                onClick={() => {
+                  goMenu(element.path);
+                }}
+              >
+                {element.text}
+              </li>
+            ))}
           </ul>
         )}
         {!user && toggled && (

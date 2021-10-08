@@ -5,7 +5,7 @@ import { initialForm, changeField, login } from '../../modules/auth';
 import { check } from '../../modules/user';
 import AuthForm from '../../components/auth/AuthForm';
 
-function LoginForm({ history }) {
+function LoginForm({ history, location }) {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const { email, password, loading, auth, authError, user } = useSelector((state) => ({
@@ -42,7 +42,12 @@ function LoginForm({ history }) {
 
   useEffect(() => {
     if (user) {
-      history.push('/');
+      if (!location.state?.from) {
+        history.push('/');
+      } else {
+        history.push(location.state.from);
+      }
+
       dispatch(initialForm('login'));
       try {
         localStorage.setItem('user', JSON.stringify(user));
@@ -50,7 +55,7 @@ function LoginForm({ history }) {
         console.log('localStorage is not working');
       }
     }
-  }, [history, user, dispatch]);
+  }, [history, user, dispatch, location.state?.from]);
 
   return (
     <AuthForm
