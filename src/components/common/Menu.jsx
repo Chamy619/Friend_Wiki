@@ -9,13 +9,6 @@ const MenuBlock = styled.div`
   z-index: 10;
 `;
 
-const Spacer = styled.div`
-  width: 160px;
-  height: 100%;
-  position: relative;
-  display: block;
-`;
-
 const makeMenu = (userList, goWrite, showPost, showPosts, selected) => {
   const menu = [];
   for (let username in userList) {
@@ -35,12 +28,7 @@ const makeMenu = (userList, goWrite, showPost, showPosts, selected) => {
 };
 
 function Menu({ user, userList, goWrite, showPost, showPosts, selected }) {
-  return (
-    <>
-      <MenuBlock>{makeMenu(userList, goWrite, showPost, showPosts, selected)}</MenuBlock>
-      <Spacer />
-    </>
-  );
+  return <MenuBlock>{makeMenu(userList, goWrite, showPost, showPosts, selected)}</MenuBlock>;
 }
 
 export default Menu;

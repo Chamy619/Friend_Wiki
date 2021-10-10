@@ -34,7 +34,7 @@ function MenuItem({ username, posts, goWrite, showPost, showPosts, selected }) {
   };
   return (
     <MenuItemBlock>
-      <div className={'user' + (username === selected.name ? ' selected' : '')} onClick={handleClick}>
+      <div className={'user' + (username === selected?.name ? ' selected' : '')} onClick={handleClick}>
         {username}
       </div>
       {/* {postVisible &&
