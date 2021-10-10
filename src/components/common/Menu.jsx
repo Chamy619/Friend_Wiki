@@ -5,8 +5,6 @@ const MenuBlock = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  position: fixed;
-  z-index: 10;
 `;
 
 const makeMenu = (userList, goWrite, showPost, showPosts, selected) => {

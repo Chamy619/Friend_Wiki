@@ -3,8 +3,9 @@ import MenuContainer from '../../containers/common/MenuContainer';
 
 const TemplateBlock = styled.div`
   width: 100%;
-  height: calc(100vh - 3rem);
+  height: auto;
   display: flex;
+  flex-direction: column;
 `;
 
 function Template({ children }) {
