@@ -1,12 +1,9 @@
-import { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
 import styled from 'styled-components';
-import palette from '../../lib/style/palette';
 
 const MenuItemBlock = styled.div`
   display: block;
   cursor: pointer;
-  background: ${palette.blue[3]};
+  margin-top: 0.25rem;
 
   &:hover {
   }
@@ -14,60 +11,33 @@ const MenuItemBlock = styled.div`
   .user {
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
-    padding: 0.25rem;
+    padding: 0.5rem;
   }
   .user:hover {
-    background: ${palette.blue[1]};
+    font-weight: bold;
+  }
+  .selected {
+    font-weight: bold;
   }
 
-  .post {
-    padding-left: 0.5rem;
-    background: ${palette.blue[2]};
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-  }
-  .post:hover {
-    background: ${palette.blue[5]};
-  }
-`;
-
-const WriteButtonBlock = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    background: ${palette.blue[0]};
+  @media screen and (max-width: 768px) {
+    .user {
+      font-size: 12px;
+      padding: 0.25rem;
+    }
   }
 `;
 
-function MenuItem({ username, posts, goWrite, showPost }) {
-  const [postVisible, setPostVisible] = useState(false);
-  const [addVisible, setAddVisible] = useState(false);
-
-  const onClick = () => {
-    setPostVisible(!postVisible);
+function MenuItem({ username, posts, goWrite, showPost, showPosts, selected }) {
+  const handleClick = () => {
+    showPosts({ ...posts, name: username });
   };
-
-  const onMouseOver = () => {
-    setAddVisible(true);
-  };
-
-  const onMouseLeave = () => {
-    setAddVisible(false);
-  };
-
   return (
     <MenuItemBlock>
-      <div className="user" onClick={onClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+      <div className={'user' + (username === selected.name ? ' selected' : '')} onClick={handleClick}>
         {username}
-        {addVisible && (
-          <WriteButtonBlock onClick={() => goWrite(username)}>
-            <AiOutlinePlus />
-          </WriteButtonBlock>
-        )}
       </div>
-      {postVisible &&
+      {/* {postVisible &&
         posts.map((post) => (
           <div
             className="post"
@@ -78,7 +48,7 @@ function MenuItem({ username, posts, goWrite, showPost }) {
           >
             {post.title}
           </div>
-        ))}
+        ))} */}
     </MenuItemBlock>
   );
 }
