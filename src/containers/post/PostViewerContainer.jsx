@@ -16,6 +16,10 @@ function PostViewerContainer({ history }) {
     user: user.user,
   }));
 
+  const goLogin = () => {
+    history.push('/login');
+  };
+
   const onEdit = () => {
     dispatch(setOriginalPost(post));
     history.push(`/write/${post.owner}`);
@@ -43,6 +47,8 @@ function PostViewerContainer({ history }) {
       post={post}
       error={error}
       loading={loading}
+      user={user}
+      goLogin={goLogin}
       actionButtons={!ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
     />
   );

@@ -10,7 +10,7 @@ function MenuContainer({ history }) {
   const { menuList, user } = useSelector((state) => ({ menuList: state.menu.menuList, user: state.user.user }));
 
   const goWrite = (owner) => {
-    history.push(`/write/${owner}`);
+    history.push(`/wiki/write/${owner}`);
   };
 
   const showPost = (id) => {
