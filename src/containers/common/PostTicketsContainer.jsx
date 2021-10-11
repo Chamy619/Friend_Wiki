@@ -26,6 +26,15 @@ function PostTicketsContainer({ history }) {
         const reloadList = [...menuList[selected.name]];
         reloadList.name = selected.name;
         dispatch(select(reloadList));
+      } else {
+        for (let i = 0; i < selected.length; i++) {
+          if (menuList[selected.name][i].title !== selected[i].title) {
+            const reloadList = [...menuList[selected.name]];
+            reloadList.name = selected.name;
+            dispatch(select(reloadList));
+            break;
+          }
+        }
       }
     }
   }, [dispatch, menuList, selected]);
