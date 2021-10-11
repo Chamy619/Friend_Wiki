@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { menuList as menuListAction, select } from '../../modules/menu';
-import { readPost } from '../../modules/post';
+import { readPost, unloadPost } from '../../modules/post';
 import Menu from '../../components/common/Menu';
 
 function MenuContainer({ history }) {
@@ -29,6 +29,10 @@ function MenuContainer({ history }) {
     dispatch(menuListAction());
   }, [dispatch]);
 
+  const clearPost = () => {
+    dispatch(unloadPost());
+  };
+
   return (
     <Menu
       user={user}
@@ -37,6 +41,7 @@ function MenuContainer({ history }) {
       showPost={showPost}
       showPosts={showPosts}
       selected={selected}
+      clearPost={clearPost}
     />
   );
 }

@@ -4,6 +4,7 @@ import Template from '../components/common/Template';
 import Ticket from '../components/common/Ticket';
 import PostTickets from '../components/common/PostTickets';
 import PostTicketsContainer from '../containers/common/PostTicketsContainer';
+import WikiMainContainer from '../containers/common/WikiMainContainer';
 
 function HomePage() {
   return (
@@ -11,7 +12,7 @@ function HomePage() {
       <HeaderContainer />
       <Template>
         {/* <Home /> */}
-        <PostTicketsContainer />
+        <WikiMainContainer />
       </Template>
     </>
   );

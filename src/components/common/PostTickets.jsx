@@ -24,14 +24,16 @@ const PencilBlock = styled.div`
   }
 `;
 
-function PostTickets({ posts, goWrite }) {
+function PostTickets({ posts, goWrite, showPost }) {
   if (!posts) {
     return null;
   }
   return (
     <PostTicketsBlock>
       {posts.map((post) => (
-        <Ticket key={post.id}>{post.title}</Ticket>
+        <Ticket key={post.id} postId={post.id} showPost={showPost}>
+          {post.title}
+        </Ticket>
       ))}
       <PencilBlock onClick={goWrite}>
         <BsPencilSquare />

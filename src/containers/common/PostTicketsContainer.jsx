@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { select } from '../../modules/menu';
 import PostTickets from '../../components/common/PostTickets';
+import { readPost } from '../../modules/post';
 
 function PostTicketsContainer({ history }) {
   const dispatch = useDispatch();
@@ -15,6 +16,10 @@ function PostTicketsContainer({ history }) {
     history.push(`/wiki/write/${selected?.name}`);
   };
 
+  const showPost = (id) => {
+    dispatch(readPost(id));
+  };
+
   useEffect(() => {
     if (selected?.length) {
       if (menuList[selected.name].length !== selected.length) {
@@ -25,7 +30,7 @@ function PostTicketsContainer({ history }) {
     }
   }, [dispatch, menuList, selected]);
 
-  return <PostTickets posts={selected} goWrite={goWrite} />;
+  return <PostTickets posts={selected} goWrite={goWrite} showPost={showPost} />;
 }
 
 export default withRouter(PostTicketsContainer);

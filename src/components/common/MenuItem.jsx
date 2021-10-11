@@ -28,11 +28,12 @@ const MenuItemBlock = styled.div`
   }
 `;
 
-function MenuItem({ username, posts, goWrite, showPost, showPosts, selected }) {
+function MenuItem({ username, posts, goWrite, showPost, showPosts, selected, clearPost }) {
   const handleClick = () => {
     const postArray = [...posts];
     postArray.name = username;
     showPosts(postArray);
+    clearPost();
   };
   return (
     <MenuItemBlock>

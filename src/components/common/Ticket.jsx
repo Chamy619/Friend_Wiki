@@ -11,11 +11,26 @@ const TicketBox = styled.div`
   box-shadow: 5px 5px 5px 2px ${palette.gray[5]};
   background: ${palette.gray[0]};
   margin: 1rem;
+  cursor: pointer;
+  h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    margin: 0;
+    max-height: 80%;
+    max-width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: norwap;
+  }
 `;
 
-function Ticket({ children }) {
+function Ticket({ postId, showPost, children }) {
+  const handleClick = () => {
+    showPost(postId);
+  };
   return (
-    <TicketBox>
+    <TicketBox onClick={handleClick}>
       <h3>{children}</h3>
     </TicketBox>
   );

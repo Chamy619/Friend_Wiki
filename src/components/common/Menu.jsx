@@ -7,7 +7,7 @@ const MenuBlock = styled.div`
   justify-content: center;
 `;
 
-const makeMenu = (userList, goWrite, showPost, showPosts, selected) => {
+const makeMenu = (userList, goWrite, showPost, showPosts, selected, clearPost) => {
   const menu = [];
   for (let username in userList) {
     menu.push(
@@ -19,14 +19,15 @@ const makeMenu = (userList, goWrite, showPost, showPosts, selected) => {
         showPost={showPost}
         showPosts={showPosts}
         selected={selected}
+        clearPost={clearPost}
       />,
     );
   }
   return menu;
 };
 
-function Menu({ user, userList, goWrite, showPost, showPosts, selected }) {
-  return <MenuBlock>{makeMenu(userList, goWrite, showPost, showPosts, selected)}</MenuBlock>;
+function Menu({ user, userList, goWrite, showPost, showPosts, selected, clearPost }) {
+  return <MenuBlock>{makeMenu(userList, goWrite, showPost, showPosts, selected, clearPost)}</MenuBlock>;
 }
 
 export default Menu;
