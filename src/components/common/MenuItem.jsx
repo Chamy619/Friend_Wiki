@@ -30,7 +30,9 @@ const MenuItemBlock = styled.div`
 
 function MenuItem({ username, posts, goWrite, showPost, showPosts, selected }) {
   const handleClick = () => {
-    showPosts({ ...posts, name: username });
+    const postArray = [...posts];
+    postArray.name = username;
+    showPosts(postArray);
   };
   return (
     <MenuItemBlock>

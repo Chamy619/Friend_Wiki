@@ -10,6 +10,9 @@ const PostTicketsBlock = styled.div`
 `;
 
 function PostTickets({ posts }) {
+  if (!posts) {
+    return null;
+  }
   return (
     <PostTicketsBlock>
       {posts.map((post) => (
