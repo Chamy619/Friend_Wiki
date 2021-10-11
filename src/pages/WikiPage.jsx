@@ -1,13 +1,13 @@
 import HeaderContainer from '../containers/common/HeaderContainer';
-import Home from '../components/home/Home';
 import Template from '../components/common/Template';
+import WikiMainContainer from '../containers/common/WikiMainContainer';
 
 function HomePage() {
   return (
     <>
       <HeaderContainer />
       <Template>
-        <Home />
+        <WikiMainContainer />
       </Template>
     </>
   );

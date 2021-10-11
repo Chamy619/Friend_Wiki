@@ -13,7 +13,7 @@ function WriteActionButtons({ onCancel, onPublish }) {
   return (
     <WriteActionButtonsBlock>
       <Button onClick={onPublish}>등록</Button>
-      <Button onclick={onCancel} type="cancel">
+      <Button onClick={onCancel} type="cancel">
         취소
       </Button>
     </WriteActionButtonsBlock>

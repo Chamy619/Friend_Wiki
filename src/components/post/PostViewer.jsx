@@ -3,7 +3,11 @@ import palette from '../../lib/style/palette';
 import { Redirect } from 'react-router-dom';
 
 const PostViewerBlock = styled.div`
-  margin-top: 4rem;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
 
 const PostHead = styled.div`
@@ -47,9 +51,8 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-function PostViewer({ post, error, loading, actionButtons, user, goLogin }) {
+function PostViewer({ post, error, loading, actionButtons, user }) {
   if (!user) {
-    // goLogin();
     return <Redirect to={{ pathname: '/login', state: { from: '/wiki' } }} />;
   }
 

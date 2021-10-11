@@ -24,12 +24,12 @@ function WriteActionButtonsContainer({ history }) {
   };
 
   const onCancel = () => {
-    history.push('/');
+    history.push('/wiki');
   };
 
   useEffect(() => {
     if (post) {
-      history.push('/');
+      history.push('/wiki');
       dispatch(initialize(''));
     }
     if (postError) {
