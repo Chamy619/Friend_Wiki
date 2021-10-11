@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BsPencilSquare } from 'react-icons/bs';
 import Ticket from './Ticket';
 
 const PostTicketsBlock = styled.div`
@@ -9,7 +10,21 @@ const PostTicketsBlock = styled.div`
   padding: 1rem 0;
 `;
 
-function PostTickets({ posts }) {
+const PencilBlock = styled.div`
+  position: absolute;
+  width: 4.5rem;
+  right: 1rem;
+  top: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  @media screen and (max-width: 768px) {
+    top: 4.75rem;
+  }
+`;
+
+function PostTickets({ posts, goWrite }) {
   if (!posts) {
     return null;
   }
@@ -18,6 +33,10 @@ function PostTickets({ posts }) {
       {posts.map((post) => (
         <Ticket key={post.id}>{post.title}</Ticket>
       ))}
+      <PencilBlock onClick={goWrite}>
+        <BsPencilSquare />
+        <span> 글쓰기</span>
+      </PencilBlock>
     </PostTicketsBlock>
   );
 }

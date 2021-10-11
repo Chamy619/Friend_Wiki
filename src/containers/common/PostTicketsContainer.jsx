@@ -1,12 +1,31 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { select } from '../../modules/menu';
 import PostTickets from '../../components/common/PostTickets';
 
-function PostTicketsContainer() {
-  const { selected } = useSelector((state) => ({
+function PostTicketsContainer({ history }) {
+  const dispatch = useDispatch();
+  const { menuList, selected } = useSelector((state) => ({
+    menuList: state.menu.menuList,
     selected: state.menu.selected,
   }));
 
-  return <PostTickets posts={selected} />;
+  const goWrite = () => {
+    history.push(`/wiki/write/${selected?.name}`);
+  };
+
+  useEffect(() => {
+    if (selected?.length) {
+      if (menuList[selected.name].length !== selected.length) {
+        const reloadList = [...menuList[selected.name]];
+        reloadList.name = selected.name;
+        dispatch(select(reloadList));
+      }
+    }
+  }, [dispatch, menuList, selected]);
+
+  return <PostTickets posts={selected} goWrite={goWrite} />;
 }
 
-export default PostTicketsContainer;
+export default withRouter(PostTicketsContainer);
