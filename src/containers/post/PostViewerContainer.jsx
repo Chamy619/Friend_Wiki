@@ -22,7 +22,7 @@ function PostViewerContainer({ history }) {
 
   const onEdit = () => {
     dispatch(setOriginalPost(post));
-    history.push(`/write/${post.owner}`);
+    history.push(`/wiki/write/${post.owner}`);
   };
 
   const onRemove = async () => {
