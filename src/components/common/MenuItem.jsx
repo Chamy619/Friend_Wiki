@@ -28,7 +28,7 @@ const MenuItemBlock = styled.div`
   }
 `;
 
-function MenuItem({ username, posts, goWrite, showPost, showPosts, selected, clearPost }) {
+function MenuItem({ username, posts, showPosts, selected, clearPost }) {
   const handleClick = () => {
     const postArray = [...posts];
     postArray.name = username;
@@ -40,18 +40,6 @@ function MenuItem({ username, posts, goWrite, showPost, showPosts, selected, cle
       <div className={'user' + (username === selected?.name ? ' selected' : '')} onClick={handleClick}>
         {username}
       </div>
-      {/* {postVisible &&
-        posts.map((post) => (
-          <div
-            className="post"
-            key={post.id}
-            onClick={() => {
-              showPost(post.id);
-            }}
-          >
-            {post.title}
-          </div>
-        ))} */}
     </MenuItemBlock>
   );
 }

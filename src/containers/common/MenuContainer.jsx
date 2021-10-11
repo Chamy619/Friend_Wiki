@@ -1,25 +1,15 @@
 import { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { menuList as menuListAction, select } from '../../modules/menu';
-import { readPost, unloadPost } from '../../modules/post';
+import { unloadPost } from '../../modules/post';
 import Menu from '../../components/common/Menu';
 
-function MenuContainer({ history }) {
+function MenuContainer() {
   const dispatch = useDispatch();
-  const { menuList, selected, user } = useSelector((state) => ({
+  const { menuList, selected } = useSelector((state) => ({
     menuList: state.menu.menuList,
     selected: state.menu.selected,
-    user: state.user.user,
   }));
-
-  const goWrite = (owner) => {
-    history.push(`/wiki/write/${owner}`);
-  };
-
-  const showPost = (id) => {
-    dispatch(readPost(id));
-  };
 
   const showPosts = (owner) => {
     dispatch(select(owner));
@@ -33,17 +23,7 @@ function MenuContainer({ history }) {
     dispatch(unloadPost());
   };
 
-  return (
-    <Menu
-      user={user}
-      userList={menuList}
-      goWrite={goWrite}
-      showPost={showPost}
-      showPosts={showPosts}
-      selected={selected}
-      clearPost={clearPost}
-    />
-  );
+  return <Menu userList={menuList} showPosts={showPosts} selected={selected} clearPost={clearPost} />;
 }
 
-export default withRouter(MenuContainer);
+export default MenuContainer;

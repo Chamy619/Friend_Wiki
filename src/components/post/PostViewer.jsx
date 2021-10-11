@@ -51,9 +51,8 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-function PostViewer({ post, error, loading, actionButtons, user, goLogin }) {
+function PostViewer({ post, error, loading, actionButtons, user }) {
   if (!user) {
-    // goLogin();
     return <Redirect to={{ pathname: '/login', state: { from: '/wiki' } }} />;
   }
 

@@ -16,10 +16,6 @@ function PostViewerContainer({ history }) {
     user: user.user,
   }));
 
-  const goLogin = () => {
-    history.push('/login');
-  };
-
   const onEdit = () => {
     dispatch(setOriginalPost(post));
     history.push(`/wiki/write/${post.owner}`);
@@ -48,7 +44,6 @@ function PostViewerContainer({ history }) {
       error={error}
       loading={loading}
       user={user}
-      goLogin={goLogin}
       actionButtons={!ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
     />
   );
