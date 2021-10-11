@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import palette from '../../lib/style/palette';
-import { Redirect } from 'react-router-dom';
 
 const PostViewerBlock = styled.div`
   margin: 0;
@@ -51,11 +50,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-function PostViewer({ post, error, loading, actionButtons, user }) {
-  if (!user) {
-    return <Redirect to={{ pathname: '/login', state: { from: '/wiki' } }} />;
-  }
-
+function PostViewer({ post, error, loading, actionButtons }) {
   if (loading) {
     return (
       <PostViewerBlock>

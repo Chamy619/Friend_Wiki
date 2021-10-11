@@ -43,7 +43,6 @@ function PostViewerContainer({ history }) {
       post={post}
       error={error}
       loading={loading}
-      user={user}
       actionButtons={!ownPost && <PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
     />
   );
