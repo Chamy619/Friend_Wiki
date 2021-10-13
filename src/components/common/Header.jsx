@@ -27,6 +27,7 @@ const HeaderBlock = styled.div`
     display: flex;
     padding-left: 0;
     margin: 0;
+    list-style: none;
     li {
       padding: 8px 12px;
       cursor: pointer;
