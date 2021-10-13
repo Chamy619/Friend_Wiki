@@ -7,7 +7,10 @@ function HeaderContainer({ history }) {
   const dispatch = useDispatch();
   const { user } = useSelector(({ user }) => ({ user: user.user }));
 
-  const menu = [{ text: '위키', path: 'wiki' }];
+  const menu = [
+    { text: '위키', path: 'wiki' },
+    { text: '나댐왕 계보', path: 'genealogy' },
+  ];
 
   const goLogin = () => {
     history.push('/login');
