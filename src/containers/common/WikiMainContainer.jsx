@@ -13,6 +13,7 @@ function WikiMainContainer() {
   if (post) {
     return <PostViewerContainer />;
   }
+
   return <PostTicketsContainer />;
 }
 
