@@ -1,19 +1,18 @@
 import styled from 'styled-components';
-import MenuContainer from '../../containers/common/MenuContainer';
+import palette from '../../lib/style/palette';
+import HeaderContainer from '../../containers/common/HeaderContainer';
 
 const TemplateBlock = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
+  background: ${palette.gray[3]};
+  min-height: calc(100vh - 3rem);
 `;
 
 function Template({ children }) {
   return (
-    <TemplateBlock>
-      <MenuContainer />
-      {children}
-    </TemplateBlock>
+    <>
+      <HeaderContainer />
+      <TemplateBlock>{children}</TemplateBlock>
+    </>
   );
 }
 
