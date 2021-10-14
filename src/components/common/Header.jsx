@@ -123,7 +123,7 @@ function Header({ user, goLogin, onLogout, menu, goMenu }) {
       <HeaderBlock>
         <div className="logo">
           <h3>
-            <Link to="/">느그위키</Link>
+            <Link to="/">금싸라기</Link>
           </h3>
         </div>
         <ul className="menu">
