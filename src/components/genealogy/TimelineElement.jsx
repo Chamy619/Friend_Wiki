@@ -1,6 +1,11 @@
+import styled from 'styled-components';
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 import palette from '../../lib/style/palette';
 import { BiCrown, BiStar } from 'react-icons/bi';
+
+const Title = styled.h3`
+  margin-top: 0;
+`;
 
 function TimelineElement({ name, date, description, index }) {
   if (!date) {
@@ -24,7 +29,7 @@ function TimelineElement({ name, date, description, index }) {
         iconStyle={{ background: palette.blue[5], color: palette.gray[0] }}
         icon={<BiCrown />}
       >
-        <h3>{name}</h3>
+        <Title>{name}</Title>
         <p>{description}</p>
       </VerticalTimelineElement>
     );
@@ -36,7 +41,7 @@ function TimelineElement({ name, date, description, index }) {
       iconStyle={{ background: palette.red[5], color: palette.gray[0] }}
       icon={<BiCrown />}
     >
-      <h3>{name}</h3>
+      <Title>{name}</Title>
       <p>{description}</p>
     </VerticalTimelineElement>
   );

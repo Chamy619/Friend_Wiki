@@ -1,11 +1,10 @@
-import HeaderContainer from '../containers/common/HeaderContainer';
 import GenealogyContainer from '../containers/genealogy/GenealogyContainer';
 import GenealogyTemplate from '../components/genealogy/GenealogyTemplate';
+import Template from '../components/common/Template';
 
 function Genealogy() {
   return (
-    <>
-      <HeaderContainer />
+    <Template>
       <GenealogyTemplate
         title={
           <div>
@@ -15,7 +14,7 @@ function Genealogy() {
         }
         content={<GenealogyContainer />}
       />
-    </>
+    </Template>
   );
 }
 
