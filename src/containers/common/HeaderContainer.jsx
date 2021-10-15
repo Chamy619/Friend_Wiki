@@ -10,6 +10,7 @@ function HeaderContainer({ history }) {
   const menu = [
     { text: '위키', path: 'wiki' },
     { text: '나댐왕 계보', path: 'genealogy' },
+    { text: '후원', path: 'support' },
   ];
 
   const goLogin = () => {
