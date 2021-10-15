@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import WritePage from './pages/WritePage';
 import GenealogyPage from './pages/GenealogyPage';
+import SupportPage from './pages/SupportPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/wiki/write/:owner" component={WritePage} />
       <Route exact path="/wiki" component={WikiPage} />
       <Route exact path="/genealogy" component={GenealogyPage} />
+      <Route exact path="/support" component={SupportPage} />
     </>
   );
 }
