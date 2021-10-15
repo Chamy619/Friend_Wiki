@@ -5,7 +5,8 @@ const TitleBlock = styled.div`
   width: 100%;
   text-align: center;
   color: ${palette.gray[9]};
-  h3 {
+  padding-top: 1rem;
+  h2 {
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -17,8 +18,8 @@ const TitleBlock = styled.div`
 function Title() {
   return (
     <TitleBlock>
-      <h3>개발자 후원</h3>
-      <h4>고생한 개발자에게 커피 한 잔 후원 가능합니다.</h4>
+      <h2>개발자 후원</h2>
+      <h4>고생한 개발자에게 커피 한 잔을 후원할 수 있습니다.</h4>
     </TitleBlock>
   );
 }
