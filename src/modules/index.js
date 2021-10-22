@@ -6,6 +6,7 @@ import user, { userSaga } from './user';
 import menu, { menuSaga } from './menu';
 import write, { writeSaga } from './write';
 import post, { postSaga } from './post';
+import genealogy, { genealogySaga } from './genealogy';
 
 const rootReducer = combineReducers({
   loading,
@@ -14,10 +15,11 @@ const rootReducer = combineReducers({
   menu,
   write,
   post,
+  genealogy,
 });
 
 export function* rootSaga() {
-  yield all([authSaga(), userSaga(), menuSaga(), writeSaga(), postSaga()]);
+  yield all([authSaga(), userSaga(), menuSaga(), writeSaga(), postSaga(), genealogySaga()]);
 }
 
 export default rootReducer;

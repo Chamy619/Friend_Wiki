@@ -2,15 +2,14 @@ import styled from 'styled-components';
 import palette from '../../lib/style/palette';
 
 const TitleBlock = styled.div`
-  padding-top: 1rem;
+  width: 100%;
   text-align: center;
   color: ${palette.gray[9]};
-
+  padding-top: 1rem;
   h2 {
     margin-top: 0;
     margin-bottom: 0;
   }
-
   h4 {
     margin-top: 0;
   }
