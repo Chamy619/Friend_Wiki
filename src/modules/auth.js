@@ -6,6 +6,7 @@ const INITIAL_FORM = 'auth/INITIAL_FORM';
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes('auth/LOGIN');
 const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes('auth/REGISTER');
+const [OAUTH, OAUTH_SUCCESS, OAUTH_FAILURE] = createRequestActionTypes('auth/OAUTH');
 
 export const initialForm = (form) => ({
   type: INITIAL_FORM,
@@ -17,9 +18,9 @@ export const changeField = ({ form, name, value }) => ({
   payload: { form, name, value },
 });
 
-export const login = ({ email, password }) => ({
+export const login = ({ email, password, code }) => ({
   type: LOGIN,
-  payload: { email, password },
+  payload: { email, password, code },
 });
 
 export const register = ({ email, username, password }) => ({
@@ -27,12 +28,19 @@ export const register = ({ email, username, password }) => ({
   payload: { email, username, password },
 });
 
+export const oauth = ({ code }) => ({
+  type: OAUTH,
+  payload: { code },
+});
+
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
+const oauthSaga = createRequestSaga(OAUTH, authAPI.oauth);
 
 export function* authSaga() {
   yield takeLatest(LOGIN, loginSaga);
   yield takeLatest(REGISTER, registerSaga);
+  yield takeLatest(OAUTH, oauthSaga);
 }
 
 const initialState = {
@@ -49,6 +57,7 @@ const initialState = {
   auth: null,
   loginError: null,
   registerError: null,
+  oauthError: null,
 };
 
 export default function auth(state = initialState, action) {
@@ -79,6 +88,10 @@ export default function auth(state = initialState, action) {
         auth: null,
         registerError: action.payload,
       };
+    case OAUTH_SUCCESS:
+      return { ...state, auth: action.payload };
+    case OAUTH_FAILURE:
+      return { ...state, oauthError: action.payload };
     default: {
       return { ...state };
     }
