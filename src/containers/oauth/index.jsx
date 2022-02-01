@@ -16,21 +16,20 @@ function OauthContainer({ location, history }) {
   const query = queryString.parse(location.search);
 
   useEffect(() => {
-    if (user) {
-      dispatch(oauth({ code: query.code }));
-      dispatch(check());
-      return;
-    }
-
     if (!user) {
       dispatch(login({ code: query.code }));
       dispatch(check());
       return;
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, history]);
 
   useEffect(() => {
-    if (user && user.kakaoId) {
+    if (user) {
+      if (!user.kakaoId) {
+        dispatch(oauth({ code: query.code }));
+        dispatch(check());
+      }
+
       history.push('/');
       try {
         localStorage.setItem('user', JSON.stringify(user));
@@ -38,7 +37,7 @@ function OauthContainer({ location, history }) {
         console.log('localStorage is not working');
       }
     }
-  }, [user, history]);
+  }, [user, history, dispatch]);
 
   return <Oauth />;
 }
